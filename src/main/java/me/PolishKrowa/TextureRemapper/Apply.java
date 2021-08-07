@@ -25,7 +25,7 @@ public class Apply {
         FilenameFilter fileFilter = new FilenameFilter() {
             @Override
             public boolean accept(File f, String name) {
-                return name.endsWith(".png");
+                return name.endsWith(".png") || name.endsWith(".jpg");
             }
         };
 
@@ -113,6 +113,10 @@ public class Apply {
         Graphics2D g2d = outputImage.createGraphics();
         g2d.drawImage(inputImage, 0, 0, scaledWidth, scaledHeight, null);
         g2d.dispose();
+
+        //set jpg to png
+        if (outputImagePath.endsWith(".jpg"))
+            outputImagePath = outputImagePath.replace(".jpg", ".png");
 
         // extracts extension of output file
         String formatName = outputImagePath.substring(outputImagePath
